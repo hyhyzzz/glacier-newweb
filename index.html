@@ -2,15 +2,803 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
   <title>Glacier Games</title>
-  <meta name="description" content="Official website of Glacier Games.">
+
+  <meta
+    name="description"
+    content="Glacier Games creates fun, relaxing and engaging mobile puzzle games."
+  >
+
+  <style>
+    :root {
+      --text-primary: #172033;
+      --text-secondary: #667085;
+      --primary: #4678f5;
+      --primary-dark: #6655e8;
+      --border: #e4e9f2;
+      --card-background: rgba(255, 255, 255, 0.82);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text-primary);
+      background:
+        radial-gradient(
+          circle at 12% 8%,
+          rgba(164, 225, 255, 0.45) 0,
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at 88% 16%,
+          rgba(204, 190, 255, 0.42) 0,
+          transparent 32%
+        ),
+        linear-gradient(180deg, #f8fbff 0%, #ffffff 68%);
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 24px 0;
+    }
+
+    .navigation {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: #ffffff;
+      font-size: 22px;
+      background: linear-gradient(135deg, #3f8cff, #7354f6);
+      box-shadow: 0 12px 28px rgba(74, 101, 240, 0.28);
+    }
+
+    .navigation-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #566078;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .navigation-links a {
+      transition: color 0.2s ease;
+    }
+
+    .navigation-links a:hover {
+      color: var(--primary);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 72px;
+      padding: 88px 0 110px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      padding: 8px 14px;
+      border: 1px solid rgba(70, 95, 230, 0.15);
+      border-radius: 999px;
+      color: #5061c8;
+      background: rgba(255, 255, 255, 0.72);
+      font-size: 13px;
+      font-weight: 750;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      max-width: 720px;
+      font-size: clamp(48px, 7vw, 78px);
+      line-height: 1.03;
+      letter-spacing: -3px;
+    }
+
+    h1 span {
+      color: transparent;
+      background: linear-gradient(90deg, #397cff, #7654f2);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero-description {
+      max-width: 610px;
+      margin-top: 26px;
+      color: var(--text-secondary);
+      font-size: 19px;
+      line-height: 1.75;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 750;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: #ffffff;
+      background: linear-gradient(135deg, #397bff, #6d55f7);
+      box-shadow: 0 13px 30px rgba(67, 91, 240, 0.28);
+    }
+
+    .button-secondary {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .button-secondary:hover {
+      border-color: #bec9dd;
+      box-shadow: 0 10px 24px rgba(41, 52, 90, 0.08);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+    }
+
+    .decoration {
+      position: absolute;
+      border-radius: 999px;
+      opacity: 0.72;
+      filter: blur(1px);
+    }
+
+    .decoration-one {
+      top: 20px;
+      right: 0;
+      width: 130px;
+      height: 130px;
+      background: #b9ddff;
+    }
+
+    .decoration-two {
+      bottom: 20px;
+      left: 0;
+      width: 95px;
+      height: 95px;
+      background: #d4c5ff;
+    }
+
+    .phone {
+      position: relative;
+      width: 236px;
+      height: 470px;
+      padding: 13px;
+      border: 8px solid #172033;
+      border-radius: 42px;
+      background: #ffffff;
+      box-shadow: 0 34px 78px rgba(34, 50, 96, 0.25);
+      transform: rotate(5deg);
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 9px;
+      left: 50%;
+      z-index: 2;
+      width: 74px;
+      height: 18px;
+      border-radius: 20px;
+      background: #172033;
+      transform: translateX(-50%);
+    }
+
+    .phone-screen {
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 29px;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at 30% 18%,
+          rgba(255, 255, 255, 0.95) 0,
+          transparent 26%
+        ),
+        linear-gradient(145deg, #d8f5ff, #e4ddff);
+    }
+
+    .game-icon {
+      width: 108px;
+      height: 108px;
+      margin-bottom: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 30px;
+      color: #ffffff;
+      background: linear-gradient(145deg, #3d8dff, #7653f5);
+      box-shadow: 0 18px 36px rgba(77, 95, 235, 0.3);
+      font-size: 52px;
+    }
+
+    .phone-screen h2 {
+      padding: 0 15px;
+      font-size: 27px;
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+
+    .phone-screen p {
+      margin-top: 10px;
+      padding: 0 22px;
+      color: #657089;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .section {
+      padding: 82px 0;
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(34px, 5vw, 48px);
+      letter-spacing: -1.8px;
+    }
+
+    .section-heading p {
+      margin-top: 15px;
+      color: var(--text-secondary);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .game-card {
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      border: 1px solid rgba(210, 220, 236, 0.9);
+      border-radius: 30px;
+      background: var(--card-background);
+      box-shadow: 0 22px 65px rgba(38, 55, 96, 0.09);
+      backdrop-filter: blur(12px);
+    }
+
+    .game-card-visual {
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(
+          circle at 30% 25%,
+          rgba(255, 255, 255, 0.9),
+          transparent 24%
+        ),
+        linear-gradient(145deg, #c8efff, #d8cdff);
+    }
+
+    .gem-icon {
+      width: 170px;
+      height: 170px;
+      display: grid;
+      place-items: center;
+      border-radius: 46px;
+      color: #ffffff;
+      background: linear-gradient(145deg, #3d90ff, #7251ed);
+      box-shadow: 0 28px 60px rgba(74, 87, 220, 0.28);
+      font-size: 78px;
+      transform: rotate(-5deg);
+    }
+
+    .game-card-content {
+      padding: 54px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .game-label {
+      margin-bottom: 16px;
+      color: #5368d8;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.9px;
+      text-transform: uppercase;
+    }
+
+    .game-card-content h3 {
+      font-size: clamp(32px, 4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+    }
+
+    .game-card-content p {
+      max-width: 550px;
+      margin-top: 18px;
+      color: var(--text-secondary);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .game-card-content .button {
+      align-self: flex-start;
+      margin-top: 28px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      min-height: 220px;
+      padding: 30px;
+      border: 1px solid rgba(210, 220, 236, 0.85);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 18px 55px rgba(38, 55, 96, 0.07);
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: #edf3ff;
+      font-size: 24px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .feature-card p {
+      color: #707a90;
+      line-height: 1.75;
+    }
+
+    .contact {
+      margin: 72px 0 90px;
+      padding: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      border-radius: 30px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #2e70f5, #6750e9);
+      box-shadow: 0 25px 70px rgba(66, 80, 215, 0.24);
+    }
+
+    .contact h2 {
+      font-size: 35px;
+      letter-spacing: -1.2px;
+    }
+
+    .contact p {
+      margin-top: 11px;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.6;
+    }
+
+    .contact .button {
+      flex-shrink: 0;
+      color: #425ce0;
+      background: #ffffff;
+    }
+
+    footer {
+      padding: 30px 0 40px;
+      border-top: 1px solid #e9edf5;
+      color: #7a8499;
+      font-size: 14px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 860px) {
+      .navigation-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 42px;
+        padding: 62px 0 80px;
+        text-align: center;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero-description {
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        min-height: 390px;
+      }
+
+      .phone {
+        width: 200px;
+        height: 400px;
+      }
+
+      .game-card {
+        grid-template-columns: 1fr;
+      }
+
+      .game-card-visual {
+        min-height: 280px;
+      }
+
+      .game-card-content {
+        padding: 38px 28px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .contact {
+        padding: 42px 28px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-content {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      header {
+        padding: 18px 0;
+      }
+
+      .brand-logo {
+        width: 40px;
+        height: 40px;
+      }
+
+      .hero {
+        padding-top: 45px;
+      }
+
+      h1 {
+        font-size: 44px;
+      }
+
+      .hero-description {
+        font-size: 17px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .hero-visual {
+        min-height: 360px;
+      }
+
+      .section {
+        padding: 64px 0;
+      }
+
+      .game-card-content .button {
+        width: 100%;
+      }
+
+      .contact {
+        margin-top: 50px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <header>
+    <div class="container navigation">
+      <a class="brand" href="#">
+        <span class="brand-logo">❄</span>
+        <span>Glacier Games</span>
+      </a>
+
+      <nav class="navigation-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#games">Our Game</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
   <main>
-    <h1>Glacier Games</h1>
-    <p>We create fun and relaxing mobile games.</p>
-    <p>Contact: glacier2023studio@gmail.com</p>
+    <section class="container hero">
+      <div>
+        <div class="eyebrow">
+          ❄ Independent Mobile Game Studio
+        </div>
+
+        <h1>
+          Games made for
+          <span>joyful moments.</span>
+        </h1>
+
+        <p class="hero-description">
+          Glacier Games creates fun, relaxing and engaging mobile experiences
+          for players around the world.
+        </p>
+
+        <div class="hero-buttons">
+          <a
+            class="button button-primary"
+            href="https://play.google.com/store/apps/details?id=com.GemSortgame.xhqh"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ▶ View on Google Play
+          </a>
+
+          <a
+            class="button button-secondary"
+            href="mailto:glacier2023studio@gmail.com"
+          >
+            Contact Us
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="decoration decoration-one"></div>
+        <div class="decoration decoration-two"></div>
+
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="game-icon">💎</div>
+            <h2>Sort. Relax. Enjoy.</h2>
+            <p>Colorful puzzle games by Glacier Games</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="games">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Discover our game.</h2>
+
+          <p>
+            Relax with colorful puzzles designed to be simple to learn,
+            satisfying to play and enjoyable at your own pace.
+          </p>
+        </div>
+
+        <article class="game-card">
+          <div class="game-card-visual" aria-hidden="true">
+            <div class="gem-icon">💎</div>
+          </div>
+
+          <div class="game-card-content">
+            <div class="game-label">Available on Google Play</div>
+
+            <h3>Gem Sort: Color Puzzle</h3>
+
+            <p>
+              Sort colorful gems, solve satisfying puzzles and enjoy a
+              relaxing mobile experience. Each level offers a simple,
+              enjoyable challenge you can play anytime.
+            </p>
+
+            <a
+              class="button button-primary"
+              href="https://play.google.com/store/apps/details?id=com.GemSortgame.xhqh"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download on Google Play →
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Simple games, thoughtfully made.</h2>
+
+          <p>
+            We focus on accessible gameplay, polished experiences and games
+            that players can enjoy during both short breaks and relaxing
+            moments.
+          </p>
+        </div>
+
+        <div class="features">
+          <article class="feature-card">
+            <div class="feature-icon">🧩</div>
+
+            <h3>Relaxing Puzzles</h3>
+
+            <p>
+              Clear rules, satisfying interactions and approachable challenges
+              designed for everyday play.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">✨</div>
+
+            <h3>Polished Experiences</h3>
+
+            <p>
+              Carefully designed visuals, responsive controls and friendly
+              mobile experiences.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🌍</div>
+
+            <h3>Made for Everyone</h3>
+
+            <p>
+              Games created for players around the world, across different
+              devices and play styles.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container contact" id="contact">
+      <div>
+        <h2>Get in touch</h2>
+
+        <p>
+          For game support, partnerships or general enquiries, contact our
+          team.
+        </p>
+      </div>
+
+      <a
+        class="button"
+        href="mailto:glacier2023studio@gmail.com"
+      >
+        glacier2023studio@gmail.com
+      </a>
+    </section>
   </main>
+
+  <footer>
+    <div class="container footer-content">
+      <p>© 2026 Glacier Games. All rights reserved.</p>
+
+      <div class="footer-links">
+        <a
+          href="https://play.google.com/store/apps/details?id=com.GemSortgame.xhqh"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Google Play
+        </a>
+
+        <a href="/app-ads.txt">
+          App-ads.txt
+        </a>
+
+        <a href="mailto:glacier2023studio@gmail.com">
+          Contact
+        </a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
